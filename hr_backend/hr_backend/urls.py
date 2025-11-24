@@ -24,4 +24,5 @@ urlpatterns = [
     path('api/', include('leave_management.urls')),
     path('api/', include('accounts.urls')),
     path('api/', include('payroll.urls')),
+    path('api/', include('audit.urls')),
 ]

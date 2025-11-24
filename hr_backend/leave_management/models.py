@@ -26,4 +26,4 @@ class Leave(models.Model):
     applied_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.employee.name} - {self.leave_type.name} ({self.start_date} to {self.end_date})"
+        return f"{self.employee.user.first_name} {self.employee.user.last_name} - {self.leave_type.name} ({self.start_date} to {self.end_date})"
