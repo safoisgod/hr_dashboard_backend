@@ -9,6 +9,7 @@ class SalaryStructure(models.Model):
     transport_allowance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     other_allowances = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
+    bonus = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     tax_deductions = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     ssnit_deductions = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 

@@ -1,5 +1,5 @@
 from django.db import models
-from department.models import Department
+from employees.models import Department
 
 # Create your models here.
 class JobPost(models.Model):

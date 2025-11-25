@@ -8,7 +8,7 @@ class SalaryStructureListCreateView(generics.ListCreateAPIView):
     queryset = SalaryStructure.objects.all()
     def get_serializer_class(self):
         if self.request.method == 'POST':
-            return SalaryStructureSerializer
+            return SalaryStructureCreateSerializer
         return SalaryStructureSerializer
 
 class PayrollRecordListCreateView(generics.ListCreateAPIView):
