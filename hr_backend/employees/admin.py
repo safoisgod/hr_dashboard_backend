@@ -1,9 +1,13 @@
 from django.contrib import admin
 from .models import Department, Position, Employee
+from import_export.admin import ImportExportModelAdmin
+from .resources import DepartmentResource, PositionResource, EmployeeResource
 
 # Register your models here.
 @admin.register(Position)
-class PositionAdmin(admin.ModelAdmin):
+class PositionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = PositionResource #for import and export functionality
+    
     list_display = ('title', 'get__department', 'created_at')
     search_fields = ('title', 'department__name')
     list_filter = ('department',)
@@ -13,7 +17,9 @@ class PositionAdmin(admin.ModelAdmin):
     get__department.short_description = 'Department'
 
 @admin.register(Employee)
-class EmployeeAdmin(admin.ModelAdmin):
+class EmployeeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = EmployeeResource  #for import and export functionality
+
     list_display = ('get__first_name', 'get__last_name', 'get__title', 'date_hired', 'is_active')
     search_fields = ('user__first_name', 'user__last_name', 'position__title')
     list_filter = ('is_active', 'position__title')
@@ -32,9 +38,12 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 
 @admin.register(Department)
-class DepartmentAdmin(admin.ModelAdmin):    
+class DepartmentAdmin(ImportExportModelAdmin, admin.ModelAdmin):    
+    resource_class = DepartmentResource  #for import and export functionality
+    
     list_display = ('name', 'get__manager', 'created_at')
     search_fields = ('name', 'user__username')
 
     def get__manager(self, obj):
-        return obj.user.username() if obj.manager else 'N/A'
+        return obj.manager.username if obj.manager else 'N/A'
+    get__manager.short_description = 'Manager'

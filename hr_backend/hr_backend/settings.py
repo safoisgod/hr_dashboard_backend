@@ -37,13 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'import_export',
+
     'accounts',
     'employees',
     'leave_management',
     'attendance',
     'payroll',
-    'rest_framework',
     'audit',
+    'recruitment',
+    'notifications',
+    
 ]
 
 MIDDLEWARE = [

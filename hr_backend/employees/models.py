@@ -4,7 +4,7 @@ from accounts.models import User
 class Department(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.TextField(blank=True)
-    manager = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='managed_departments')
+    manager = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='managed_departments')
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
@@ -29,4 +29,6 @@ class Employee(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name} - {self.position.title}"
+        if self.user:
+            return f"{self.user.first_name} {self.user.last_name} - {self.position.title}"
+        return f"Employee ID {self.id} - {self.position.title}"

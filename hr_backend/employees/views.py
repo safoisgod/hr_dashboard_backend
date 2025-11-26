@@ -1,32 +1,41 @@
 from django.shortcuts import render
 from .models import Employee, Department, Position
-from .serializers import EmployeeSerializers, DepartmentSerializers, PositionSerializers
+from .serializers import EmployeeSerializers, DepartmentSerializers, PositionSerializers, EmployeeCreateSerializers, DepartmentCreateSerializers, PositionCreateSerializers
 from rest_framework import generics
 
 # for all employees
-class EmployeeListViewAPI(generics.ListAPIView):
+class EmployeeListViewAPI(generics.ListCreateAPIView):
     queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializers
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return EmployeeCreateSerializers
+        return EmployeeSerializers
 
 # for detailed employees
-class EmployeeDetailViewAPI(generics.RetrieveAPIView):
+class EmployeeDetailViewAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializers
 
-class DepartmentListViewAPI(generics.ListAPIView):
+class DepartmentListViewAPI(generics.ListCreateAPIView):
+    queryset = Department.objects.all()
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return DepartmentCreateSerializers
+        return DepartmentSerializers
+
+class DepartmentDetailViewAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializers
 
-class DepartmentDetailViewAPI(generics.RetrieveAPIView):
-    queryset = Department.objects.all()
-    serializer_class = DepartmentSerializers
 
-
-class PositionListViewAPI(generics.ListAPIView):
+class PositionListViewAPI(generics.ListCreateAPIView):
     queryset = Position.objects.all()
-    serializer_class = PositionSerializers
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return PositionCreateSerializers
+        return PositionSerializers
 
-class PositionDetailViewAPI(generics.RetrieveAPIView):
+class PositionDetailViewAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Position.objects.all()
     serializer_class = PositionSerializers
     
