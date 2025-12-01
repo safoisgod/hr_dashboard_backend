@@ -8,7 +8,7 @@ from import_export.admin import ImportExportModelAdmin
 class AuditLogAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = AuditLogResource
     
-    list_display = ('user', 'action', 'timestamp', 'ip_address')
+    list_display = ('id', 'user', 'action', 'timestamp', 'ip_address')
     search_fields = ('user__username', 'action', 'ip_address')
     list_filter = ('action', 'timestamp')
 

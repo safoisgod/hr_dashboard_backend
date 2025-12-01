@@ -8,7 +8,7 @@ from import_export.admin import ImportExportModelAdmin
 class AttendanceAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = AttendanceResources
 
-    list_display = ('username', 'date', 'check_in', 'check_out', 'status')
+    list_display = ('id', 'username', 'date', 'check_in', 'check_out', 'status')
     search_fields = ('user__username', 'date', 'status')
     list_filter = ('status', 'date')
 

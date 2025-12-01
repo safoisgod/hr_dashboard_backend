@@ -8,7 +8,7 @@ from import_export.admin import ImportExportModelAdmin
 class SalaryStructureAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = SalaryStructureResource
 
-    list_display = ('get__employee', 'base_salary', 'housing_allowance', 'transport_allowance', 'other_allowances', 'bonus',)
+    list_display = ('id', 'get__employee', 'base_salary', 'housing_allowance', 'transport_allowance', 'other_allowances', 'bonus',)
     search_fields = ('employee__first_name', 'employee__last_name',)
     
     def get__employee(self, obj):
@@ -19,7 +19,7 @@ class SalaryStructureAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class PayrollRecordAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = PayrollRecordResource
     
-    list_display = ('get__employee', 'pay_date', 'gross_salary', 'total_deductions', 'net_salary',)
+    list_display = ('id', 'get__employee', 'pay_date', 'gross_salary', 'total_deductions', 'net_salary',)
     search_fields = ('employee__first_name', 'employee__last_name',)
     
     def get__employee(self, obj):

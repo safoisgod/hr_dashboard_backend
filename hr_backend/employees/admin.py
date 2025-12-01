@@ -8,7 +8,7 @@ from .resources import DepartmentResource, PositionResource, EmployeeResource
 class PositionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = PositionResource #for import and export functionality
     
-    list_display = ('title', 'get__department', 'created_at')
+    list_display = ('id', 'title', 'get__department', 'created_at')
     search_fields = ('title', 'department__name')
     list_filter = ('department',)
 
@@ -20,7 +20,7 @@ class PositionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class EmployeeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = EmployeeResource  #for import and export functionality
 
-    list_display = ('get__first_name', 'get__last_name', 'get__title', 'date_hired', 'is_active')
+    list_display = ('id', 'get__first_name', 'get__last_name', 'get__title', 'date_hired', 'is_active')
     search_fields = ('user__first_name', 'user__last_name', 'position__title')
     list_filter = ('is_active', 'position__title')
 
@@ -41,7 +41,7 @@ class EmployeeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class DepartmentAdmin(ImportExportModelAdmin, admin.ModelAdmin):    
     resource_class = DepartmentResource  #for import and export functionality
     
-    list_display = ('name', 'get__manager', 'created_at')
+    list_display = ('id', 'name', 'get__manager', 'created_at')
     search_fields = ('name', 'user__username')
 
     def get__manager(self, obj):
