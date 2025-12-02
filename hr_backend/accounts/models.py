@@ -9,6 +9,7 @@ class User(AbstractUser):
         ('manager', 'Manager'),
         ('hr', 'HR'),
         ('admin', 'Admin'),
+        ('payroll_officer', 'Payroll Officer'),
     ]
 
     username = models.CharField(max_length=150, unique=True)
@@ -23,6 +24,13 @@ class User(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     is_employee = models.BooleanField(default=False)
     is_hr = models.BooleanField(default=False)
+
+    class Meta:
+        permissions =[
+            ("can_view_user_data", "Can view user data"),
+            ("can_edit_user_data", "Can edit user data"),
+            ("can_manage_roles", "Can manage user roles"),
+        ]
 
     def __str__(self):
         return f"{self.username}"

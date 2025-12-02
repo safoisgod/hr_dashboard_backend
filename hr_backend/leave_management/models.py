@@ -25,5 +25,14 @@ class Leave(models.Model):
     status = models.CharField(max_length=20, choices=leave_status, default="pending")
     applied_on = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        permissions = [
+            ("can_view_leave", "Can view leave"),
+            ("can_approve_leave", "Can approve leave"),
+            ("can_reject_leave", "Can reject leave"),
+            ("can_cancel_leave", "Can cancel leave"),
+            ("can_manage_leave_types", "Can manage leave types"),
+        ]
+
     def __str__(self):
         return f"{self.employee.user.first_name} {self.employee.user.last_name} - {self.leave_type.name} ({self.start_date} to {self.end_date})"

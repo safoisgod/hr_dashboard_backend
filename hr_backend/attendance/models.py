@@ -19,5 +19,12 @@ class Attendance(models.Model):
 
     overtime_hours = models.DecimalField(max_digits=5, decimal_places=2, default=0.0)
 
+    class Meta:
+        permissions = [
+            ("can_view_attendance", "Can view attendance records"),
+            ("can_edit_attendance", "Can edit attendance records"),
+            ("can_manage_attendance", "Can manage attendance records"),
+        ]
+
     def __str__(self):
         return f"{self.employee.name} - {self.date}"
